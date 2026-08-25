@@ -1,0 +1,2620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Welcome to AI Class</title>
+
+<!-- jQuery -->
+<script src="jquery-4.0.0.min.js"></script>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background: #ffe0b2;
+    transition: background 1s;
+}
+
+/* =====================================================
+   NEW USER INTRODUCTION
+===================================================== */
+
+#newUserIntro {
+    min-height: 100vh;
+    padding: 30px 15px;
+}
+
+.intro-container {
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+.intro-container h1 {
+    text-align: center;
+    color: brown;
+    font-size: 45px;
+}
+
+.intro-container h2 {
+    text-align: center;
+    color: #18752c;
+}
+
+.intro-welcome {
+    text-align: center;
+    font-size: 19px;
+    line-height: 1.7;
+}
+
+.intro-card {
+    background: #f7f7f7;
+    padding: 22px;
+    margin: 20px 0;
+    border-radius: 14px;
+    border-left: 6px solid brown;
+    line-height: 1.7;
+}
+
+.intro-card h3 {
+    color: brown;
+}
+
+.intro-card li {
+    margin: 8px 0;
+}
+
+.learning-path {
+    text-align: center;
+    background: #fff3cd;
+    padding: 20px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.important {
+    background: #eaf7ea;
+    border-left-color: green;
+}
+
+.start-learning {
+    text-align: center;
+    padding: 30px;
+    background: #e9f3ff;
+    border-radius: 15px;
+}
+
+#startLearningButton {
+    border: none;
+    padding: 16px 30px;
+    background: brown;
+    color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#startLearningButton:hover {
+    background: #542800;
+}
+
+
+/* =====================================================
+   LOBBY
+===================================================== */
+
+#lobby {
+    min-height: 100vh;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+#lobby h1 {
+    color: brown;
+    font-family: Georgia, serif;
+    font-size: 48px;
+}
+
+.subtitle {
+    font-size: 20px;
+    margin-bottom: 35px;
+}
+
+.progress-box {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.15);
+}
+
+.progress-bar {
+    height: 20px;
+    background: #ddd;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#progressFill {
+    height: 100%;
+    width: 5%;
+    background: green;
+    transition: width .5s;
+}
+
+.class-grid {
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.class-button {
+    padding: 18px 8px;
+    border: none;
+    border-radius: 12px;
+    background: brown;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.class-button:hover {
+    background: #542800;
+    transform: translateY(-3px);
+}
+
+.class-button.locked {
+    background: #999;
+    cursor: not-allowed;
+}
+
+
+/* =====================================================
+   CLASS SECTION
+===================================================== */
+
+#classSection {
+    display: none;
+    padding: 25px 15px;
+}
+
+.container {
+    max-width: 1050px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.3);
+}
+
+#classTitle {
+    text-align: center;
+    color: brown;
+    font-size: 38px;
+}
+
+#topic {
+    text-align: center;
+    color: #18752c;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.card {
+    padding: 22px;
+    margin: 20px 0;
+    border-radius: 14px;
+    line-height: 1.7;
+}
+
+.lesson {
+    background: #f5f5f5;
+    border-left: 6px solid brown;
+}
+
+.key {
+    background: #eaf7ea;
+    border-left: 6px solid green;
+}
+
+.example {
+    background: #fff5d6;
+    border-left: 6px solid #d49a00;
+}
+
+.summary {
+    background: #e9f3ff;
+    border-left: 6px solid #1976d2;
+}
+
+.exercise {
+    background: #f2efff;
+    border: 2px solid #a99ae8;
+}
+
+.demo {
+    text-align: center;
+    background: #eef8ff;
+    border: 2px solid #4aa7d7;
+}
+
+#demoText {
+    padding: 18px;
+    background: white;
+    border-radius: 10px;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+.small-button {
+    border: none;
+    padding: 11px 18px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    margin: 4px;
+}
+
+.hide {
+    background: #c62828;
+}
+
+.show {
+    background: #2e7d32;
+}
+
+.toggle {
+    background: #ef8c00;
+}
+
+.answer {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 14px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+}
+
+.answer:hover {
+    background: #eef5ff;
+}
+
+.answer.correct {
+    background: #d9f4df;
+    border-color: green;
+}
+
+.answer.wrong {
+    background: #ffe0e0;
+    border-color: red;
+}
+
+#feedback {
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+#videoArea {
+    display: none;
+    text-align: center;
+    margin-top: 25px;
+}
+
+#classVideo {
+    width: 100%;
+    max-width: 750px;
+    min-height: 350px;
+    border-radius: 12px;
+    background: black;
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.nav {
+    border: none;
+    padding: 14px 22px;
+    border-radius: 9px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.videoBtn {
+    background: #1565c0;
+}
+
+.backBtn {
+    background: #555;
+}
+
+.nextBtn {
+    background: #2e7d32;
+}
+
+.nextBtn:disabled {
+    background: #999;
+    cursor: not-allowed;
+}
+
+#lockMessage {
+    text-align: center;
+    color: #8a5a00;
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:800px) {
+
+    .class-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+@media(max-width:500px) {
+
+    #lobby h1 {
+        font-size: 35px;
+    }
+
+    .class-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .container {
+        padding: 18px;
+    }
+
+    #classVideo {
+        min-height: 220px;
+    }
+
+    .nav {
+        width: 100%;
+    }
+
+    .intro-container {
+        padding: 20px;
+    }
+
+    .intro-container h1 {
+        font-size: 32px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     NEW USER INTRODUCTION
+===================================================== -->
+
+<section id="newUserIntro">
+
+<div class="intro-container">
+
+<h1>🤖 Welcome to AI Class</h1>
+
+<h2>New Here? Learn How to Use This Site</h2>
+
+<p class="intro-welcome">
+
+Welcome to AI Class!
+
+This website is designed to teach Artificial Intelligence
+step by step through 20 different classes.
+
+</p>
+
+
+<div class="intro-card">
+
+<h3>📚 Step 1 — Choose a Class</h3>
+
+<p>
+
+Your learning journey starts with Class 1.
+
+The classes are arranged in order because each lesson helps
+you understand the lessons that follow.
+
+</p>
+
+</div>
+
+
+<div class="intro-card">
+
+<h3>📖 Step 2 — Study the Lesson</h3>
+
+<p>
+
+Every class contains a detailed explanation of its topic.
+
+</p>
+
+<ul>
+
+<li>📖 Detailed lesson</li>
+<li>🧠 Important things to understand</li>
+<li>💡 Real-life example</li>
+<li>📌 Lesson summary</li>
+<li>🧪 Interactive activity</li>
+
+</ul>
+
+</div>
+
+
+<div class="intro-card">
+
+<h3>🧪 Step 3 — Try the Activity</h3>
+
+<p>
+
+Some lessons contain an interactive Hide, Show and Toggle
+activity.
+
+</p>
+
+</div>
+
+
+<div class="intro-card">
+
+<h3>🎥 Step 4 — Watch the Video</h3>
+
+<p>
+
+When a video is available, click the Video button to watch
+the lesson video.
+
+</p>
+
+</div>
+
+
+<div class="intro-card">
+
+<h3>📝 Step 5 — Complete the Exercise</h3>
+
+<p>
+
+At the end of each lesson there is an exercise.
+
+The questions are based on what you have learned.
+
+You must answer correctly before moving to the next class.
+
+</p>
+
+</div>
+
+
+<div class="intro-card">
+
+<h3>🔓 Step 6 — Unlock the Next Class</h3>
+
+<div class="learning-path">
+
+Class 1 ➡️ Exercise ➡️ Class 2 ➡️ Exercise ➡️ Class 3
+
+</div>
+
+<p>
+
+When you pass an exercise, the next class becomes unlocked.
+
+</p>
+
+</div>
+
+
+<div class="intro-card">
+
+<h3>⬅️ Step 7 — Back to Lobby</h3>
+
+<p>
+
+Use the Back to Lobby button to return to the main class
+selection page.
+
+</p>
+
+</div>
+
+
+<div class="intro-card">
+
+<h3>➡️ Step 8 — Next Class</h3>
+
+<p>
+
+After passing your exercise, click Next Class to continue.
+
+</p>
+
+</div>
+
+
+<div class="intro-card important">
+
+<h3>⭐ Important Tips</h3>
+
+<ul>
+
+<li>Read every lesson carefully.</li>
+
+<li>Watch the video when available.</li>
+
+<li>Complete every exercise.</li>
+
+<li>Review the lesson if you get an answer wrong.</li>
+
+<li>Take notes when necessary.</li>
+
+<li>Complete the classes in order.</li>
+
+</ul>
+
+</div>
+
+
+<div class="start-learning">
+
+<h2>🚀 You Are Ready!</h2>
+
+<p>
+
+You now know how to use the AI Class website.
+
+</p>
+
+<button id="startLearningButton">
+
+🎓 START LEARNING
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     LOBBY
+===================================================== -->
+
+<section id="lobby">
+
+<h1>WELCOME TO AI CLASS</h1>
+
+<p class="subtitle">
+
+Learn Artificial Intelligence Step by Step
+
+</p>
+
+
+<div class="progress-box">
+
+<h3>📊 Your Learning Progress</h3>
+
+<p id="progressText">
+
+Class 1 of 20
+
+</p>
+
+<div class="progress-bar">
+
+<div id="progressFill"></div>
+
+</div>
+
+</div>
+
+
+<div class="class-grid">
+
+<button class="class-button" data-class="1">
+🎓 CLASS 1
+</button>
+
+<button class="class-button locked" data-class="2">
+🔒 CLASS 2
+</button>
+
+<button class="class-button locked" data-class="3">
+🔒 CLASS 3
+</button>
+
+<button class="class-button locked" data-class="4">
+🔒 CLASS 4
+</button>
+
+<button class="class-button locked" data-class="5">
+🔒 CLASS 5
+</button>
+
+<button class="class-button locked" data-class="6">
+🔒 CLASS 6
+</button>
+
+<button class="class-button locked" data-class="7">
+🔒 CLASS 7
+</button>
+
+<button class="class-button locked" data-class="8">
+🔒 CLASS 8
+</button>
+
+<button class="class-button locked" data-class="9">
+🔒 CLASS 9
+</button>
+
+<button class="class-button locked" data-class="10">
+🔒 CLASS 10
+</button>
+
+<button class="class-button locked" data-class="11">
+🔒 CLASS 11
+</button>
+
+<button class="class-button locked" data-class="12">
+🔒 CLASS 12
+</button>
+
+<button class="class-button locked" data-class="13">
+🔒 CLASS 13
+</button>
+
+<button class="class-button locked" data-class="14">
+🔒 CLASS 14
+</button>
+
+<button class="class-button locked" data-class="15">
+🔒 CLASS 15
+</button>
+
+<button class="class-button locked" data-class="16">
+🔒 CLASS 16
+</button>
+
+<button class="class-button locked" data-class="17">
+🔒 CLASS 17
+</button>
+
+<button class="class-button locked" data-class="18">
+🔒 CLASS 18
+</button>
+
+<button class="class-button locked" data-class="19">
+🔒 CLASS 19
+</button>
+
+<button class="class-button locked" data-class="20">
+🔒 CLASS 20
+</button>
+
+</div>
+
+<p style="margin-top:30px;">
+
+Complete each exercise to unlock the next class.
+
+</p>
+
+</section>
+
+
+
+<!-- =====================================================
+     CLASS SECTION
+===================================================== -->
+
+<section id="classSection">
+
+<div class="container">
+
+<h2 id="classTitle"></h2>
+
+<div id="topic"></div>
+
+
+<div class="card lesson">
+
+<h3>📖 Detailed Lesson</h3>
+
+<div id="lessonText"></div>
+
+</div>
+
+
+<div class="card key">
+
+<h3>🧠 Important Things to Understand</h3>
+
+<ul id="keyPoints"></ul>
+
+</div>
+
+
+<div class="card example">
+
+<h3>💡 Real-Life Example</h3>
+
+<div id="exampleText"></div>
+
+</div>
+
+
+<div class="card summary">
+
+<h3>📌 Lesson Summary</h3>
+
+<div id="summaryText"></div>
+
+</div>
+
+
+<!-- JQUERY ACTIVITY -->
+
+<div class="card demo">
+
+<h3>🧪 jQuery Hide and Show Activity</h3>
+
+<div id="demoText">
+
+This is an example of an interactive webpage element.
+
+</div>
+
+<button class="small-button hide" id="hideButton">
+Hide
+</button>
+
+<button class="small-button show" id="showButton">
+Show
+</button>
+
+<button class="small-button toggle" id="toggleButton">
+Toggle
+</button>
+
+</div>
+
+
+<!-- EXERCISE -->
+
+<div class="card exercise">
+
+<h3>📝 Exercise</h3>
+
+<p id="question"></p>
+
+<div id="answers"></div>
+
+<div id="feedback"></div>
+
+</div>
+
+
+<!-- VIDEO -->
+
+<div id="videoArea">
+
+<h3>🎥 Class Video</h3>
+
+<video id="classVideo" controls playsinline>
+
+<source id="videoSource"
+src="videos"
+type="video/mp4">
+
+Your browser does not support video.
+
+</video>
+
+<p id="videoName"></p>
+
+</div>
+
+
+<!-- NAVIGATION -->
+
+<div class="navigation">
+
+<button class="nav videoBtn" id="videoButton">
+
+🎥 Video
+
+</button>
+
+<button class="nav backBtn" id="backButton">
+
+⬅ Back to Lobby
+
+</button>
+
+<button class="nav nextBtn" id="nextButton" disabled>
+
+Next Class ➡
+
+</button>
+
+</div>
+
+
+<p id="lockMessage">
+
+Answer the exercise correctly to unlock the next class.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<script>
+
+/* =====================================================
+   20 AI LESSONS
+===================================================== */
+
+const lessons = [
+
+{
+topic:"Introduction to Artificial Intelligence",
+
+lesson:`
+Artificial Intelligence, commonly called AI, is an area of
+computer science focused on creating computer systems that
+can perform tasks that normally require some form of human
+intelligence.
+
+People can learn from experience, recognize patterns,
+understand language, solve problems and make decisions.
+
+AI systems are designed to perform some of these tasks using
+computer programs, algorithms and data.
+
+AI does not mean that a computer has become a human being.
+Instead, it means that a machine or computer system has been
+designed to perform particular intelligent tasks.
+
+AI is used in many areas including education, transportation,
+agriculture, banking, entertainment, communication and
+scientific research.
+`,
+
+key:[
+"AI means Artificial Intelligence.",
+"AI uses computer programs, algorithms and data.",
+"AI can recognize patterns.",
+"AI is used in many different industries."
+],
+
+example:`
+A smartphone camera can recognize a face and automatically
+adjust the image. The software analyzes information in the
+picture and responds to patterns it has detected.
+`,
+
+summary:`
+Artificial Intelligence is technology that allows computers
+to perform certain tasks associated with human intelligence.
+`,
+
+question:"What does Artificial Intelligence allow computers to do?",
+
+options:[
+"Perform certain tasks associated with human intelligence",
+"Only print documents",
+"Only play music"
+],
+
+answer:0,
+
+video:"class1"
+},
+
+
+{
+topic:"Types of Artificial Intelligence",
+
+lesson:`
+AI can be classified according to the range of tasks that a
+system can perform.
+
+Narrow AI is designed to perform a particular task or a
+limited group of tasks.
+
+Examples include recommendation systems, speech recognition
+systems and image classification systems.
+
+General AI is a theoretical idea referring to a much broader
+form of intelligence that could perform many different
+intellectual tasks.
+
+Most AI systems used today are specialized or narrow systems.
+`,
+
+key:[
+"Narrow AI performs specific tasks.",
+"General AI describes broader intelligence.",
+"Most current AI applications are specialized.",
+"Being good at one task does not mean an AI can perform every task."
+],
+
+example:`
+A system designed to recognize faces may be extremely good
+at recognizing faces, but that does not mean it can automatically
+teach mathematics or repair a car.
+`,
+
+summary:`
+Narrow AI focuses on specific tasks while General AI describes
+a much broader theoretical form of intelligence.
+`,
+
+question:"Which type of AI is designed for a specific task?",
+
+options:[
+"Narrow AI",
+"General AI",
+"Mechanical AI"
+],
+
+answer:0,
+
+video:""
+},
+
+
+{
+topic:"AI in Everyday Life",
+
+lesson:`
+Artificial Intelligence is already part of many technologies
+that people use every day.
+
+Search engines can use algorithms to organize information.
+Map applications can analyze traffic information.
+Streaming platforms can recommend movies and music.
+Email systems can identify possible spam.
+
+Voice assistants can process spoken requests, while smartphone
+cameras can use AI-related techniques to recognize scenes or
+faces.
+
+Many AI systems work in the background without users realizing
+that AI is being used.
+`,
+
+key:[
+"AI is used in search engines.",
+"AI can power recommendation systems.",
+"AI can process speech.",
+"AI can help detect spam.",
+"AI can process images."
+],
+
+example:`
+If you watch several programming videos, a recommendation
+system may suggest other programming videos based on patterns
+in your activity.
+`,
+
+summary:`
+AI is already used in many everyday digital services.
+`,
+
+question:"Which technology can use AI to understand spoken requests?",
+
+options:[
+"Voice assistant",
+"Notebook",
+"Ruler"
+],
+
+answer:0,
+
+video:""
+},
+
+
+{
+topic:"Data and Artificial Intelligence",
+
+lesson:`
+Data is information that can be collected, stored and
+processed by computers.
+
+Data can include numbers, text, photographs, audio, videos
+and measurements.
+
+Many AI systems depend on data because machine-learning models
+can learn useful patterns from examples.
+
+The quality of the data is important.
+
+If data contains errors, missing information or does not
+represent the situations where the system will be used, the
+AI may produce poor results.
+
+Preparing and checking data is therefore an important part
+of many AI projects.
+`,
+
+key:[
+"Data is information.",
+"AI systems can learn patterns from data.",
+"Data can contain text, images, sounds and numbers.",
+"Poor-quality data can affect AI results."
+],
+
+example:`
+If an AI system needs to identify cats and dogs, it should
+have useful examples of both rather than thousands of examples
+of only one animal.
+`,
+
+summary:`
+Data provides information and examples that many AI systems
+use to learn patterns.
+`,
+
+question:"Why is data important in many AI systems?",
+
+options:[
+"It provides information from which patterns can be learned",
+"It replaces the computer",
+"It changes the keyboard"
+],
+
+answer:0,
+
+video:""
+},
+
+
+{
+topic:"Machine Learning",
+
+lesson:`
+Machine Learning is an important part of modern Artificial
+Intelligence.
+
+Instead of programming every possible rule manually, a
+machine-learning system can learn patterns from examples.
+
+The examples used during learning are called training data.
+
+The learning process allows a model to identify relationships
+within the data.
+
+After training, the model can receive new information and
+make a prediction or classification.
+
+Machine learning is used in recommendation systems, spam
+detection, image recognition and many other applications.
+`,
+
+key:[
+"Machine learning learns patterns from data.",
+"Training uses examples.",
+"A model is produced through learning.",
+"A trained model can make predictions."
+],
+
+example:`
+An email system can learn from examples of spam and normal
+messages. When a new email arrives, it can predict whether
+the message resembles spam.
+`,
+
+summary:`
+Machine learning allows computers to learn useful patterns
+from data and use those patterns on new information.
+`,
+
+question:"What is the main idea of machine learning?",
+
+options:[
+"Learning patterns from data",
+"Changing screen brightness",
+"Printing documents"
+],
+
+answer:0,
+
+video:""
+},
+
+
+{
+topic:"Supervised Learning",
+
+lesson:`
+Supervised learning uses training examples that have labels
+or known answers.
+
+For example, photographs can be labeled "cat" or "dog".
+
+The model studies the examples and learns relationships
+between the input information and the known labels.
+
+After training, the model can receive a new photograph and
+predict which category it belongs to.
+
+Supervised learning is commonly used for classification and
+prediction tasks.
+`,
+
+key:[
+"Supervised learning uses labeled examples.",
+"Labels provide known answers.",
+"Classification is a common use.",
+"Incorrect labels can affect the model."
+],
+
+example:`
+A teacher can give students practice questions together with
+the correct answers. The answers provide information that can
+be used to evaluate their work.
+`,
+
+summary:`
+Supervised learning trains a model using examples with known
+labels or answers.
+`,
+
+question:"What is special about supervised training data?",
+
+options:[
+"It contains labels or known answers",
+"It contains no information",
+"It contains only pictures of computers"
+],
+
+answer:0,
+
+video:""
+},
+
+
+{
+topic:"Unsupervised Learning",
+
+lesson:`
+Unsupervised learning works with data that does not have
+provided labels.
+
+Instead of being told the correct category, the system looks
+for patterns, similarities or structures within the data.
+
+Clustering is a common example.
+
+A clustering algorithm can group similar items together
+without being given the groups beforehand.
+
+This can be useful when researchers want to discover patterns
+that were not previously known.
+`,
+
+key:[
+"Unsupervised learning uses unlabeled data.",
+"It searches for patterns.",
+"Clustering is a common technique.",
+"Similar examples can be grouped together."
+],
+
+example:`
+A business could analyze customer behaviour without predefined
+customer groups and use an algorithm to identify groups of
+customers with similar purchasing patterns.
+`,
+
+summary:`
+Unsupervised learning searches for patterns and groups within
+data without supplied labels.
+`,
+
+question:"What does unsupervised learning try to discover?",
+
+options:[
+"Patterns and groups in data",
+"Only keyboard shortcuts",
+"Computer cables"
+],
+
+answer:0,
+
+video:""
+},
+
+
+{
+topic:"Reinforcement Learning",
+
+lesson:`
+Reinforcement learning involves an agent interacting with an
+environment.
+
+The agent observes a situation, takes an action and receives
+feedback.
+
+Actions that lead toward a goal can receive positive rewards,
+while undesirable actions can receive negative feedback.
+
+Over many attempts, the system can learn which actions tend
+to produce better results.
+
+Reinforcement learning is commonly associated with tasks
+where decisions happen repeatedly.
+`,
+
+key:[
+"An agent takes actions.",
+"The agent interacts with an environment.",
+"Rewards provide feedback.",
+"The system can learn from repeated attempts."
+],
+
+example:`
+An AI playing a game may receive points for achieving goals.
+Over time, it can learn strategies that tend to increase its
+score.
+`,
+
+summary:`
+Reinforcement learning uses actions and feedback to learn
+better behaviour.
+`,
+
+question:"What provides feedback in reinforcement learning?",
+
+options:[
+"Rewards or penalties",
+"Paper",
+"A keyboard colour"
+],
+
+answer:0,
+
+video:""
+},
+
+
+{
+topic:"Algorithms",
+
+lesson:`
+An algorithm is a sequence of clear steps used to solve a
+problem or complete a task.
+
+Algorithms are used throughout computer science and are not
+limited to AI.
+
+An algorithm receives information, processes it according to
+defined instructions and produces a result.
+
+AI systems use algorithms to process data, train models,
+search for solutions and make predictions.
+
+Different algorithms may solve the same problem in different
+ways.
+`,
+
+key:[
+"Algorithms contain steps.",
+"They can solve problems.",
+"AI systems use algorithms.",
+"Algorithms should be appropriate for the problem."
+],
+
+example:`
+A recipe contains a sequence of instructions. You follow one
+step and then another until the meal is completed. This is
+similar to the basic idea of an algorithm.
+`,
+
+summary:`
+An algorithm is a sequence of instructions used to solve a
+problem or perform a task.
+`,
+
+question:"What is an algorithm?",
+
+options:[
+"A sequence of steps used to solve a problem",
+"A computer screen",
+"A battery"
+],
+
+answer:0,
+
+video:""
+},
+
+
+{
+topic:"Neural Networks",
+
+lesson:`
+Artificial neural networks are computing models inspired
+loosely by biological neural networks.
+
+They commonly contain layers of connected computational
+units.
+
+An input layer receives information. Hidden layers transform
+information and can learn useful patterns. An output layer
+produces a result.
+
+During training, the network adjusts internal parameters
+called weights.
+
+Neural networks are used in image recognition, speech
+processing and language-related applications.
+`,
+
+key:[
+"Neural networks contain connected units.",
+"They are commonly organized into layers.",
+"Training adjusts internal parameters.",
+"They can learn patterns from data."
+],
+
+example:`
+An image-recognition network can receive information about
+pixels and learn patterns that help distinguish between
+different objects.
+`,
+
+summary:`
+Neural networks use connected layers to process information
+and learn patterns.
+`,
+
+question:"What do neural networks learn during training?",
+
+options:[
+"Useful patterns in data",
+"How to manufacture chairs",
+"How to charge batteries"
+],
+
+answer:0,
+
+video:""
+},
+
+
+{
+topic:"Deep Learning",
+
+lesson:`
+Deep learning is a branch of machine learning that commonly
+uses neural networks with many layers.
+
+Different layers can learn different levels of representation.
+
+Earlier layers may identify simple features while later layers
+combine those features into more complex patterns.
+
+Deep learning has been useful in image recognition, speech
+recognition and natural language processing.
+
+Depending on the task, deep-learning systems can require
+large amounts of data and computing resources.
+`,
+
+key:[
+"Deep learning commonly uses many neural-network layers.",
+"Layers can learn different levels of patterns.",
+"It is used in images, speech and language.",
+"Training can require significant resources."
+],
+
+example:`
+When analyzing an image, early layers may identify edges while
+later layers combine those edges into larger shapes that help
+identify an object.
+`,
+
+summary:`
+Deep learning uses multi-layer neural networks to learn
+complex patterns.
+`,
+
+question:"What does 'deep' refer to in deep learning?",
+
+options:[
+"Multiple layers in a neural network",
+"The colour of the computer",
+"The depth of a keyboard"
+],
+
+answer:0,
+
+video:""
+},
+
+
+{
+topic:"Natural Language Processing",
+
+lesson:`
+Natural Language Processing, or NLP, is an area of AI
+concerned with human language.
+
+NLP allows computers to work with text and spoken language.
+
+Applications include translation, text classification,
+search, summarization, question answering and conversational
+systems.
+
+Human language can be difficult because words can have
+different meanings depending on context.
+
+NLP systems therefore use computational methods to analyze
+language and relationships between words.
+`,
+
+key:[
+"NLP means Natural Language Processing.",
+"It works with human language.",
+"It can process text and speech.",
+"Context is important when processing language."
+],
+
+example:`
+When you ask an AI chatbot a question, the system processes
+the words in your question before producing a response.
+`,
+
+summary:`
+NLP helps computers process and work with human language.
+`,
+
+question:"What does NLP deal with?",
+
+options:[
+"Human language",
+"Computer electricity",
+"Keyboard cables"
+],
+
+answer:0,
+
+video:""
+},
+
+
+{
+topic:"Computer Vision",
+
+lesson:`
+Computer vision is an area of AI concerned with images and
+video.
+
+Digital images are made from pixels.
+
+Computer-vision systems can process those pixels and learn
+visual patterns.
+
+Image classification assigns an image to a category.
+
+Object detection can identify objects and their locations.
+
+Computer vision is used in robotics, agriculture,
+manufacturing and scientific research.
+`,
+
+key:[
+"Computer vision works with visual information.",
+"Images contain pixels.",
+"Classification assigns categories.",
+"Object detection can locate objects."
+],
+
+example:`
+A robot with a camera can use computer vision to identify
+objects in front of it and understand part of its environment.
+`,
+
+summary:`
+Computer vision allows AI systems to process images and
+video and identify useful visual patterns.
+`,
+
+question:"What does computer vision mainly process?",
+
+options:[
+"Images and video",
+"Only keyboards",
+"Only batteries"
+],
+
+answer:0,
+
+video:""
+},
+
+
+{
+topic:"Speech Recognition",
+
+lesson:`
+Speech recognition allows computers to process spoken
+language.
+
+A microphone captures sound and software analyzes the audio
+to identify the words being spoken.
+
+Modern speech-recognition systems can use machine learning
+to handle different speakers, accents and speaking speeds.
+
+Speech recognition can work together with Natural Language
+Processing to help a computer understand spoken requests.
+`,
+
+key:[
+"Speech recognition processes spoken language.",
+"Audio can be converted into text.",
+"Different voices create challenges.",
+"Speech recognition can work with NLP."
+],
+
+example:`
+When you dictate a message to your phone and your spoken words
+appear as text, speech recognition is being used.
+`,
+
+summary:`
+Speech recognition allows computers to process spoken
+language and convert it into useful computer input.
+`,
+
+question:"What can speech recognition convert?",
+
+options:[
+"Speech into text or commands",
+"Paper into electricity",
+"A keyboard into a monitor"
+],
+
+answer:0,
+
+video:""
+},
+
+
+{
+topic:"Robotics and AI",
+
+lesson:`
+Robotics is concerned with designing and building physical
+machines called robots.
+
+Robots can use sensors to collect information about their
+surroundings.
+
+They can also use motors and mechanical systems to perform
+physical actions.
+
+AI can help robots interpret sensor information, recognize
+objects, plan actions and respond to changing situations.
+
+Not every robot uses AI. Some robots simply follow fixed
+instructions.
+`,
+
+key:[
+"Robots are physical machines.",
+"Sensors collect information.",
+"Motors allow robots to perform actions.",
+"AI can help robots make decisions."
+],
+
+example:`
+A robot can detect an obstacle using a sensor and change
+direction instead of continuing straight toward it.
+`,
+
+summary:`
+AI can help robots understand their surroundings and make
+decisions.
+`,
+
+question:"What does a robot sensor do?",
+
+options:[
+"Collect information about its surroundings",
+"Write books",
+"Charge the robot"
+],
+
+answer:0,
+
+video:""
+},
+
+
+{
+topic:"AI Ethics",
+
+lesson:`
+AI ethics concerns the responsible development and use of
+Artificial Intelligence.
+
+Important issues include privacy, fairness, transparency,
+accountability and safety.
+
+Privacy matters because AI systems may process information
+about people.
+
+Fairness matters because AI systems should be evaluated to
+ensure they do not create unjustified disadvantages.
+
+Transparency can help people understand how AI is being used.
+
+Accountability means people and organizations remain
+responsible for important uses and decisions involving AI.
+`,
+
+key:[
+"Privacy is important.",
+"AI should be evaluated for fairness.",
+"Transparency can help users understand AI.",
+"Safety and accountability matter."
+],
+
+example:`
+If a school uses an AI system to analyze student information,
+the school should protect the information and check that the
+system does not produce unfair results.
+`,
+
+summary:`
+Responsible AI requires attention to privacy, fairness,
+transparency, accountability and safety.
+`,
+
+question:"Which is an AI ethics issue?",
+
+options:[
+"Privacy",
+"Keyboard colour",
+"Screen size"
+],
+
+answer:0,
+
+video:""
+},
+
+
+{
+topic:"AI Bias",
+
+lesson:`
+AI bias occurs when an AI system produces systematically
+unfair, inaccurate or unbalanced results.
+
+Bias can enter through training data, incorrect labels,
+limited representation or design decisions.
+
+If a training dataset poorly represents a particular
+situation, the model may perform less accurately when it
+encounters that situation.
+
+Testing across relevant situations can help identify problems.
+
+Reducing bias may require better data, improved design,
+evaluation and human review.
+`,
+
+key:[
+"Bias can come from data.",
+"Labels can contain errors.",
+"Unrepresentative data can create problems.",
+"Testing can help identify bias."
+],
+
+example:`
+If a model is trained mostly on one type of example, it may
+perform well on those examples but less accurately on examples
+that were poorly represented during training.
+`,
+
+summary:`
+AI bias can come from data or design and should be identified
+through careful evaluation.
+`,
+
+question:"What can contribute to AI bias?",
+
+options:[
+"Unrepresentative training data",
+"A clean screen",
+"A new keyboard"
+],
+
+answer:0,
+
+video:""
+},
+
+
+{
+topic:"AI Safety and Human Oversight",
+
+lesson:`
+AI systems should be tested before and after deployment.
+
+Testing can reveal errors, unexpected behaviour and situations
+where a system performs poorly.
+
+AI systems can sometimes produce incorrect results even when
+the output appears confident.
+
+Human oversight means people remain involved in reviewing,
+controlling or supervising AI when appropriate.
+
+Important or high-risk applications generally require more
+careful checking than low-risk applications.
+`,
+
+key:[
+"AI systems should be tested.",
+"AI can make mistakes.",
+"Humans can review important results.",
+"Supervision should match the risk of the task."
+],
+
+example:`
+A person reviewing an important AI-generated recommendation
+can check the result before acting on it.
+`,
+
+summary:`
+AI safety involves testing systems, understanding their
+limitations and using appropriate human oversight.
+`,
+
+question:"Why should AI systems be tested?",
+
+options:[
+"To find errors and unexpected behaviour",
+"To make computers heavier",
+"To remove all humans"
+],
+
+answer:0,
+
+video:""
+},
+
+
+{
+topic:"Building an AI Project",
+
+lesson:`
+A successful AI project starts with a clearly defined problem.
+
+After defining the problem, developers identify the data
+needed to solve it.
+
+The data is prepared and checked.
+
+An appropriate method or model is selected and trained when
+necessary.
+
+The system must then be tested using suitable data.
+
+Testing helps determine whether the model works on new
+examples rather than only the examples it learned from.
+
+The results are evaluated and the system can be improved.
+
+Documentation should explain how the system works and what
+its limitations are.
+`,
+
+key:[
+"Define the problem.",
+"Collect appropriate data.",
+"Prepare the data.",
+"Choose a suitable method.",
+"Train and test the system.",
+"Evaluate and improve it."
+],
+
+example:`
+To build an AI fruit classifier, you could collect labeled
+images of fruits, prepare the data, train a model, test it
+using new images and evaluate its results.
+`,
+
+summary:`
+AI projects involve problem definition, data, development,
+testing, evaluation and improvement.
+`,
+
+question:"What should you do first when building an AI project?",
+
+options:[
+"Define the problem and goal",
+"Skip the data",
+"Skip testing"
+],
+
+answer:0,
+
+video:""
+},
+
+
+{
+topic:"Final AI Project Review",
+
+lesson:`
+In this final lesson, we bring together the major ideas from
+the entire course.
+
+Artificial Intelligence enables computers to perform certain
+tasks associated with human intelligence.
+
+Machine learning allows computers to learn patterns from data.
+
+Supervised learning uses labeled examples, while unsupervised
+learning searches for patterns in unlabeled data.
+
+Reinforcement learning learns through actions and feedback.
+
+Neural networks and deep learning can learn complex patterns.
+
+Natural Language Processing works with language.
+
+Computer vision works with images and video.
+
+Speech recognition works with spoken language.
+
+Robotics combines software with physical machines.
+
+Responsible AI requires attention to privacy, fairness, bias,
+safety, accountability and human oversight.
+
+A good AI project is not simply about creating a model.
+
+It involves defining a problem, using appropriate data,
+testing results, evaluating performance and improving the
+system.
+`,
+
+key:[
+"AI allows computers to perform intelligent tasks.",
+"Machine learning learns patterns from data.",
+"Different AI techniques solve different problems.",
+"AI should be tested and evaluated.",
+"Responsible AI considers ethics and safety."
+],
+
+example:`
+Imagine creating an AI system that identifies objects in
+photographs.
+
+You would define the goal, collect appropriate data, train
+a model, test it, evaluate the results and improve the system.
+`,
+
+summary:`
+Successful AI development combines technical knowledge,
+data, testing, evaluation and responsible use.
+`,
+
+question:"What should happen after an AI system has been tested?",
+
+options:[
+"Evaluate the results and improve the system",
+"Assume it is perfect",
+"Delete everything"
+],
+
+answer:0,
+
+video:""
+}
+
+];
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let currentClass = 1;
+
+
+/*
+   Load saved progress.
+
+   If no progress exists, Class 1 is unlocked.
+*/
+
+let unlockedClass =
+    parseInt(
+        localStorage.getItem("aiClassProgress")
+    ) || 1;
+
+
+/* =====================================================
+   UPDATE LOBBY
+===================================================== */
+
+function updateLobby() {
+
+    $(".class-button").each(function() {
+
+        const number =
+            Number($(this).data("class"));
+
+        if (number <= unlockedClass) {
+
+            $(this)
+                .removeClass("locked")
+                .text(
+                    "🎓 CLASS " + number
+                );
+
+        } else {
+
+            $(this)
+                .addClass("locked")
+                .text(
+                    "🔒 CLASS " + number
+                );
+
+        }
+
+    });
+
+
+    const percentage =
+        (unlockedClass / 20) * 100;
+
+    $("#progressFill").css(
+        "width",
+        percentage + "%"
+    );
+
+
+    $("#progressText").text(
+        "Class " +
+        unlockedClass +
+        " of 20 unlocked"
+    );
+
+}
+
+
+/* =====================================================
+   OPEN CLASS
+===================================================== */
+
+function openClass(number) {
+
+    if (number > unlockedClass) {
+
+        alert(
+            "🔒 Complete the previous class exercise first."
+        );
+
+        return;
+    }
+
+
+    currentClass = number;
+
+
+    const lesson =
+        lessons[number - 1];
+
+
+    $("#lobby").hide();
+
+    $("#newUserIntro").hide();
+
+    $("#classSection").fadeIn(300);
+
+
+    $("#classTitle").text(
+        "CLASS " + number
+    );
+
+
+    $("#topic").text(
+        "Topic: " + lesson.topic
+    );
+
+
+    $("#lessonText").html(
+        lesson.lesson.replace(
+            /\n/g,
+            "<br><br>"
+        )
+    );
+
+
+    $("#exampleText").html(
+        lesson.example.replace(
+            /\n/g,
+            "<br><br>"
+        )
+    );
+
+
+    $("#summaryText").html(
+        lesson.summary.replace(
+            /\n/g,
+            "<br><br>"
+        )
+    );
+
+
+    $("#keyPoints").empty();
+
+
+    lesson.key.forEach(function(item) {
+
+        $("#keyPoints").append(
+            "<li>" + item + "</li>"
+        );
+
+    });
+
+
+    $("#question").text(
+        lesson.question
+    );
+
+
+    $("#answers").empty();
+
+
+    lesson.options.forEach(
+        function(option,index) {
+
+            $("#answers").append(
+
+                `<button
+                    class="answer"
+                    data-answer="${index}">
+                    ${String.fromCharCode(65 + index)}.
+                    ${option}
+                </button>`
+
+            );
+
+        }
+    );
+
+
+    $("#feedback").text("");
+
+
+    $("#videoArea").hide();
+
+
+    $("#videoSource").attr(
+        "src",
+        ""
+    );
+
+
+    $("#classVideo")[0].load();
+
+
+    /*
+       If this class was already completed,
+       allow Next Class immediately.
+    */
+
+    const completed =
+        localStorage.getItem(
+            "aiClassCompleted" + number
+        );
+
+
+    if (completed === "yes") {
+
+        $("#nextButton")
+            .prop("disabled",false);
+
+        $("#lockMessage")
+            .text(
+                "✓ You already completed this class."
+            );
+
+    } else {
+
+        $("#nextButton")
+            .prop("disabled",true);
+
+        $("#lockMessage")
+            .text(
+                "Answer the exercise correctly to unlock the next class."
+            );
+
+    }
+
+}
+
+
+/* =====================================================
+   CLASS BUTTONS
+===================================================== */
+
+$(".class-button").click(function() {
+
+    const number =
+        Number(
+            $(this).data("class")
+        );
+
+
+    if (
+        $(this).hasClass("locked") ||
+        number > unlockedClass
+    ) {
+
+        alert(
+            "🔒 Complete the previous class first."
+        );
+
+        return;
+    }
+
+
+    openClass(number);
+
+});
+
+
+/* =====================================================
+   EXERCISE
+===================================================== */
+
+$(document).on(
+    "click",
+    ".answer",
+    function() {
+
+        const selected =
+            Number(
+                $(this).data("answer")
+            );
+
+
+        const correct =
+            lessons[
+                currentClass - 1
+            ].answer;
+
+
+        $(".answer")
+            .removeClass(
+                "correct wrong"
+            );
+
+
+        if (
+            selected === correct
+        ) {
+
+            $(this)
+                .addClass("correct");
+
+
+            $("#feedback")
+                .css(
+                    "color",
+                    "green"
+                )
+                .text(
+                    "✓ Correct! Excellent work."
+                );
+
+
+            /*
+               Save completed class
+            */
+
+            localStorage.setItem(
+                "aiClassCompleted" +
+                currentClass,
+                "yes"
+            );
+
+
+            /*
+               Unlock next class
+            */
+
+            if (
+                currentClass < 20
+            ) {
+
+                if (
+                    unlockedClass <
+                    currentClass + 1
+                ) {
+
+                    unlockedClass =
+                        currentClass + 1;
+
+
+                    localStorage.setItem(
+                        "aiClassProgress",
+                        unlockedClass
+                    );
+
+                }
+
+
+                updateLobby();
+
+
+                $("#nextButton")
+                    .prop(
+                        "disabled",
+                        false
+                    );
+
+
+                $("#lockMessage")
+                    .text(
+                        "✓ Class " +
+                        (currentClass + 1) +
+                        " is now unlocked!"
+                    );
+
+            } else {
+
+                $("#nextButton")
+                    .prop(
+                        "disabled",
+                        false
+                    );
+
+
+                $("#lockMessage")
+                    .text(
+                        "🎉 Congratulations! You completed all 20 classes!"
+                    );
+
+            }
+
+
+        } else {
+
+            $(this)
+                .addClass("wrong");
+
+
+            $("#feedback")
+                .css(
+                    "color",
+                    "red"
+                )
+                .text(
+                    "✗ Incorrect. Review the lesson and try again."
+                );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   NEXT CLASS
+===================================================== */
+
+$("#nextButton").click(function() {
+
+    if (
+        currentClass < 20
+    ) {
+
+        openClass(
+            currentClass + 1
+        );
+
+    } else {
+
+        alert(
+            "🎉 Congratulations!\n\n" +
+            "You have completed all 20 AI classes!"
+        );
+
+    }
+
+});
+
+
+/* =====================================================
+   BACK TO LOBBY
+===================================================== */
+
+$("#backButton").click(function() {
+
+    $("#classSection").hide();
+
+    $("#lobby").fadeIn(300);
+
+    updateLobby();
+
+});
+
+
+/* =====================================================
+   JQUERY HIDE
+===================================================== */
+
+$("#hideButton").click(function() {
+
+    $("#demoText").hide();
+
+});
+
+
+/* =====================================================
+   JQUERY SHOW
+===================================================== */
+
+$("#showButton").click(function() {
+
+    $("#demoText").show();
+
+});
+
+
+/* =====================================================
+   JQUERY TOGGLE
+===================================================== */
+
+$("#toggleButton").click(function() {
+
+    $("#demoText").toggle();
+
+});
+
+
+/* =====================================================
+   VIDEO
+===================================================== */
+
+$("#videoButton").click(function() {
+
+    const lesson =
+        lessons[
+            currentClass - 1
+        ];
+
+
+    /*
+       Put a direct MP4 URL into
+       the video's "video" property.
+
+       Example:
+
+       video:"https://example.com/class1.mp4"
+    */
+
+
+    if (!lesson.video) {
+
+        alert(
+            "🎥 A video has not been added to Class " +
+            currentClass +
+            " yet."
+        );
+
+        return;
+    }
+
+
+    $("#videoSource")
+        .attr(
+            "src",
+            lesson.video
+        );
+
+
+    $("#videoName").text(
+        "Class " +
+        currentClass +
+        " Video"
+    );
+
+
+    $("#classVideo")[0].load();
+
+
+    $("#videoArea")
+        .slideDown(300);
+
+});
+
+
+/* =====================================================
+   CHANGING BACKGROUND
+===================================================== */
+
+const backgrounds = [
+
+"#ffe0b2",
+"#d7ccc8",
+"#c8e6c9",
+"#bbdefb",
+"#e1bee7",
+"#fff9c4",
+"#ffccbc"
+
+];
+
+
+let backgroundNumber = 0;
+
+
+setInterval(function() {
+
+    $("body").css(
+        "background",
+        backgrounds[
+            backgroundNumber
+        ]
+    );
+
+
+    backgroundNumber++;
+
+
+    if (
+        backgroundNumber >=
+        backgrounds.length
+    ) {
+
+        backgroundNumber = 0;
+
+    }
+
+},3000);
+
+
+/* =====================================================
+   START LEARNING
+===================================================== */
+
+$("#startLearningButton").click(
+    function() {
+
+        /*
+           Remember that the person
+           has visited the site.
+        */
+
+        localStorage.setItem(
+            "aiClassVisited",
+            "yes"
+        );
+
+
+        $("#newUserIntro").fadeOut(
+            400,
+            function() {
+
+                $("#lobby")
+                    .fadeIn(400);
+
+                updateLobby();
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   FIRST VISIT CHECK
+===================================================== */
+
+$(document).ready(function() {
+
+    const hasVisited =
+        localStorage.getItem(
+            "aiClassVisited"
+        );
+
+
+    if (
+        hasVisited === "yes"
+    ) {
+
+        /*
+           Returning visitor
+        */
+
+        $("#newUserIntro").hide();
+
+        $("#classSection").hide();
+
+        $("#lobby").show();
+
+        updateLobby();
+
+    } else {
+
+        /*
+           New visitor
+        */
+
+        $("#newUserIntro").show();
+
+        $("#lobby").hide();
+
+        $("#classSection").hide();
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
